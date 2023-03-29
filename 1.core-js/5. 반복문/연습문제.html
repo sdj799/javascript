@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Math.random(); 0.0이상 1.0미만의 랜덤값.
+        // Math.floor(): 내림, Math.ceil(): 올림, Math.round(): 반올림
+
+        var o = 0;
+        var x = 0;
+
+        while (true) {
+            var rn1 = Math.floor((Math.random() * 20) + 1);
+            var rn2 = Math.floor((Math.random() * 20) + 1);
+            var rn3 = Math.floor((Math.random() * 3) + 1);
+            if(rn3 == 1) {
+                var answer = prompt(rn1 + '+' + rn2);
+                if(answer == rn1+rn2) {
+                    o++;
+                } else if(answer == '그만') {
+                    break;
+                } else{
+                    alert('오답입니다.');
+                    x++;
+                }
+            } if(rn3 == 2) {
+                var answer = prompt(rn1 + '-' + rn2);
+                if(answer == rn1-rn2) {
+                    o++;
+                } else if(answer == '그만') {
+                    break;
+                } else {
+                    alert('오답입니다.');
+                    x++;
+                }
+            } if(rn3 == 3) {
+                var answer = prompt(rn1 + 'x' + rn2);
+                if(answer == rn1*rn2) {
+                    o++;
+                } else if(answer == '그만') {
+                    break;
+                } else {
+                    alert('오답입니다.');
+                    x++;
+                }
+            }
+        }
+        alert(`정답횟수: ${o} 오답횟수: ${x}`)
+
+    </script>
+
+</body>
+
+</html>
