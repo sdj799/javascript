@@ -55,12 +55,16 @@ checkNumber에서 정답, 오답 여부 및 up/down 여부를 판단해서 논�
 
         //사용자의 입력을 수행하는 함수
         function inputNumber() {
-            var inputNum = prompt(`${min}~${max} 사이의 숫자를 입력하세요!`)
             //객체에서 min과 max의 값을 뽑아서 메세지를 완성.
             //객체 디스트럭쳐링으로 뽑아 보세요~
+            if(gameData.countdown == 0) {
+                alert('정답은 ' + gameData.secret_num);
+                return true;
+            }
+            var n = prompt(`${gameData.min}~${gameData.max} 사이의 숫자를 입력하세요!`)
 
             //사용자의 입력값을 객체에 추가
-
+            gameData.inputNum = n;
             //입력값 검증 함수를 호출.
             return checkNumber();
 
@@ -68,19 +72,38 @@ checkNumber에서 정답, 오답 여부 및 up/down 여부를 판단해서 논�
 
         //사용자의 입력값을 검증하는 함수
         function checkNumber() {
-
-
+            if(gameData.inputNum == gameData.secret_num) {
+                alert('정답');
+                return true;
+            }
+            gameData.countdown --;
+            gameData.count ++; 
+            if(gameData.inputNum < gameData.secret_num) {
+                alert('up');
+                gameData.min = Number(gameData.inputNum) + 1;
+                return false;
+            } else {
+                alert('down');
+                gameData.max = gameData.inputNum - 1;
+                return false;
+            }
+            
         }
 
         //사용자의 카운트다운을 체크하여 승리 여부를 알려주는 함수
         function checkCountDown(countdown) {
-
+            if(countdown == 0) {
+                alert('패배');
+            } else {
+                alert(gameData.count + '번 만에 맞췄어요');
+                alert('승리');
+            }
         }
 
 
         //사용자의 남은 카운트다운 횟수를 알려주는 함수
         function alertCountDown(countdown) {
-
+            alert('남은 횟수' + countdown);
         }
 
 
@@ -95,8 +118,9 @@ checkNumber에서 정답, 오답 여부 및 up/down 여부를 판단해서 논�
             while (!inputNumber()) {
                 //true가 리턴되면 프로그램 종료.
                 //false가 리턴되면 게임 계속 진행.
+                alertCountDown(gameData.countdown);
             }
-
+            checkCountDown(gameData.countdown);
         }());
     </script>
 
