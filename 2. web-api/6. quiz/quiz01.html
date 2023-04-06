@@ -23,12 +23,12 @@
 
     <script>
         const $input = document.querySelectorAll('input[type="checkbox"]');
-        for (let $in of $input) {
+        for (let $in of [...$input]) {
             $in.addEventListener('change', e => {
                 if (e.target.checked) {
                     alert(`조항${e.target.value}에 동의하셨습니다.`)
                 }
-            })
+            });
 
         }
     </script>
@@ -42,6 +42,8 @@
     ID: <input type="text" id="id">
     기억하기 <input type="checkbox" id="remember">
     <button id="check2">확인</button>
+
+
     <script>
         const $id = document.getElementById('id');
         const $remember = document.getElementById('remember');
