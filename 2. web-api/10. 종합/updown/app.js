@@ -63,9 +63,19 @@ function checkAnswer($numbers, $target) {
         $begin.textContent = answer + 1;
         executeUpDownAnimation(true);
     }
+
+    //판별 후에는 아이콘을 재 배치.
+    clearNumberIcons($numbers); //현재 랜더링 되어 있는 아이콘들을 전체 삭제.
+    makeNumberIcons(); //min, max가 변경되어 있기 때문에 그에 맞춰서 아이콘을 다시 배치.
 }
 
-//정답을 맞췄을 시 처리를 수행할 함수 정의
+// 아이콘 전체 삭제 함수
+function clearNumberIcons($numbers) {
+    console.log('아이콘 전체 삭제!');
+    [...$numbers.children].forEach($icon => $numbers.removeChild($icon));
+}
+
+// 정답을 맞췄을 시 처리를 수행할 함수 정의
 function processCorrect($target) {
     // 축하메세지 박스를 나타나게 하는 코드.
     // 축하 박스는 평소에는 숨겨져 있음. 이제 드러나도 된다는 신호.
